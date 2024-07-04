@@ -1,0 +1,31 @@
+name: Deploy to WordPress
+
+on:
+  push:
+    branches:
+      - main  # adjust the branch name as per your setup
+
+jobs:
+
+install_httpd:
+    runs-on: ubuntu-latest  # adjust OS image as per your deployment server OS
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install SSH Client
+      run: sudo apt-get install openssh-client  # For Ubuntu/Debian based runners
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_PRIVATE_KEY }}
+
+    - name: Install httpd
+      run: |
+        ssh ec2-user@44.211.170.132 'sudo yum update && sudo yum install -y httpd unzip'
+        scp latest.zip ec2-user@44.211.170.132://home/ec2-user/
+        ssh ec2-user@44.211.170.132 'cd /home/ec2-user/ && unzip latest.zip && cp -r wordpress/ /var/www/html/ '
+        
+        
