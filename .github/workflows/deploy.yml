@@ -7,14 +7,14 @@ on:
 
 jobs:
   install_httpd:
-    runs-on: testlab-runner  # adjust OS image as per your deployment server OS
+    runs-on: Linux  # adjust OS image as per your deployment server OS
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Install SSH Client
-      run: sudo apt-get install openssh-client  # For Ubuntu/Debian based runners
+      run: sudo yum install openssh-client  # For Ubuntu/Debian based runners
 
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.4
