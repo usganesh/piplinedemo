@@ -6,9 +6,8 @@ on:
       - main  # adjust the branch name as per your setup
 
 jobs:
-
-install_httpd:
-    runs-on: ubuntu-latest  # adjust OS image as per your deployment server OS
+  install_httpd:
+    runs-on: testlab-runner  # adjust OS image as per your deployment server OS
 
     steps:
     - name: Checkout repository
