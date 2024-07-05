@@ -5,6 +5,9 @@ on:
     branches:
       - main  # adjust the branch name as per your setup
 
+env:
+      ENV_VAR_NAME: prod
+
 jobs:
   install_httpd:
     runs-on: Linux  # adjust OS image as per your deployment server OS
