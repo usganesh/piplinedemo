@@ -20,7 +20,7 @@ jobs:
 
     - name: Install httpd
       run: |
-        ssh ec2-user@3.82.230.111 'sudo yum update && sudo yum install -y httpd php unzip mariadb105-server && sudo systemctl enable --now httpd && sudo systemctl enable --now  mariadb'
+        ssh ec2-user@3.82.230.111 'sudo yum update && sudo yum install -y httpd php unzip mariadb105-server && sudo systemctl enable --now httpd && sudo systemctl enable --now  mariadb && rm -r /home/ec2-user/wordpress'
         scp latest.zip ec2-user@3.82.230.111://home/ec2-user/
         ssh ec2-user@3.82.230.111 'cd /home/ec2-user/ && unzip latest.zip && sudo cp -r wordpress/ /var/www/html/ '
         
