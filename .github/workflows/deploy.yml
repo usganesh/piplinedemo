@@ -5,9 +5,6 @@ on:
     branches:
       - main  # adjust the branch name as per your setup
 
-env:
-      ENV_VAR_NAME: prod
-
 jobs:
   install_httpd:
     runs-on: Linux  # adjust OS image as per your deployment server OS
@@ -23,8 +20,8 @@ jobs:
 
     - name: Install httpd
       run: |
-        ssh ec2-user@44.211.170.132 'sudo yum update && sudo yum install -y httpd unzip'
-        scp latest.zip ec2-user@44.211.170.132://home/ec2-user/
-        ssh ec2-user@44.211.170.132 'cd /home/ec2-user/ && unzip latest.zip && cp -r wordpress/ /var/www/html/ '
+        ssh ec2-user@${{variable.HOST}} 'sudo yum update && sudo yum install -y httpd unzip'
+        scp latest.zip ec2-user@3.82.230.111://home/ec2-user/
+        ssh ec2-user@3.82.230.111 'cd /home/ec2-user/ && unzip latest.zip && cp -r wordpress/ /var/www/html/ '
         
         
