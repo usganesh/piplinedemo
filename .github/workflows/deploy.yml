@@ -7,7 +7,7 @@ on:
 
 jobs:
   install_httpd:
-    runs-on: Linux  # adjust OS image as per your deployment server OS
+    runs-on: ubuntu-latest  # adjust OS image as per your deployment server OS
 
     steps:
     - name: Set up SSH
